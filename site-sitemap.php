@@ -6,6 +6,7 @@ Description: Add a complete list of all posts in any page by [site-sitemap] shor
 Author: Joan Artés
 Version: 1.0
 Author URI: http://joanartes.com/
+License: GPLv2 or later
 */
 
 /**
