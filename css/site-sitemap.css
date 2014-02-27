@@ -1,0 +1,14 @@
+.site-sitemap-nav {
+	float: left;
+	position: relative;
+	padding: 0 0 10px;
+	width: 100%;
+}
+	
+	.site-sitemap-nav a { 
+		float: right;
+	}
+
+	.site-sitemap-nav a:first-child {
+		float: left;
+	}
