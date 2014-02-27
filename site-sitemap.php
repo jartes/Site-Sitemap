@@ -39,18 +39,24 @@ function ss_shortcode( $atts ) {
 		$sitemap = new WP_Query( $query_args );
 	 	wp_cache_set( 'ss_site_sitemap', $sitemap );
 	} 
-?>
-	<ul>
-		<?php while ( $sitemap->have_posts() ) : $sitemap->the_post(); ?>	
-			<li><a href="<?php the_permalink();?>"><?php the_title(); ?></a></li>
-		<?php endwhile; ?> 
-	</ul>
-	<nav class="site-sitemap-nav">
-		<?php previous_posts_link( '&laquo; Previous', $sitemap->max_num_pages ); ?>
-        <?php next_posts_link( 'Next &raquo;', $sitemap->max_num_pages) ?>
-	</nav>
-<?php
+
+	$html = '<ul>';
+	
+		while ( $sitemap->have_posts() ) { 
+			$sitemap->the_post();
+			$html .= '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
+		}
+		
+	$html .= '</ul>';
+	
+	$html .= '<nav class="site-sitemap-nav">';
+		$html .= get_previous_posts_link( '&laquo; Previous', $sitemap->max_num_pages );
+	    $html .= get_next_posts_link( 'Next &raquo;', $sitemap->max_num_pages);
+	$html .= '</nav>';
+
 	wp_reset_postdata();
+
+	return $html;
 
 }
 add_shortcode( 'site-sitemap', 'ss_shortcode' );
